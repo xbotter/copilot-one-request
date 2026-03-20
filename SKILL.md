@@ -66,6 +66,23 @@ ask_user(
 - **Keep forms focused** — one topic per form; do not combine unrelated questions in a single call
 - **Acknowledge completion first** — briefly summarize what was done before asking for next steps, so the user has clear context
 
+## For Persistent Enforcement (Recommended)
+
+Skills are **opt-in** — they must be explicitly invoked via the `skill` tool. For this rule to apply automatically in every session without manual invocation, also add it to your global instructions file:
+
+**`~/.copilot/copilot-instructions.md`**:
+
+```markdown
+## Task Completion
+
+Always follow the `asking-user-next-steps` skill requirements:
+- After completing any task, **never go silent**
+- Always use the `ask_user` tool (with a schema) to prompt for the next instruction
+- Only fall back to plain text if `ask_user` is unavailable
+```
+
+This ensures the rule is always active, while the skill provides the detailed implementation reference.
+
 ## Common Mistakes
 
 | Mistake | Why It's Wrong | Correct Approach |
